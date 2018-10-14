@@ -33,6 +33,10 @@ def add_user(request):
     return render(request, 'add_user.html', {'form': form})
 
 
+def get_user(request, username):
+    return render(request, 'get_user.html', {'user': User.objects.get(username=username)})
+
+
 def add_speaker(request):
     if request.method == "POST":
         form = SpeakerForm(request.POST)
