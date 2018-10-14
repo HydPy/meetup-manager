@@ -1,9 +1,15 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
 
 from .forms import (
     UserForm,
     SpeakerForm
+)
+
+from .models import (
+    User,
+    Speaker
 )
 
 
@@ -17,10 +23,9 @@ def add_user(request):
         form = UserForm(request.POST)
 
         if form.is_valid():
-            return HttpResponse(
-                f'{form.cleaned_data}'
-                'User Added successfully'
-            )
+            form.save()
+            messages.info(request, 'User added successfully')
+            return HttpResponseRedirect('/')
 
     else:
         form = UserForm()
@@ -33,10 +38,9 @@ def add_speaker(request):
         form = SpeakerForm(request.POST)
 
         if form.is_valid():
-            return HttpResponse(
-                f'{form.cleaned_data}'
-                'Speaker Added successfully'
-            )
+            form.save()
+            messages.info(request, 'Speaker added successfully')
+            return HttpResponseRedirect('')
 
     else:
         form = SpeakerForm()
