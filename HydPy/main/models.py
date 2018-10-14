@@ -3,12 +3,12 @@ from django.core.validators import RegexValidator
 
 
 class User(models.Model):
-    username = models.CharField(max_length=32)
+    username = models.CharField(max_length=32, primary_key=True)
     FirstName = models.CharField(max_length=50, verbose_name='First Name')
     LastName = models.CharField(max_length=50, verbose_name='Last Name')
-    email = models.CharField(max_length=100)
+    email = models.CharField(max_length=100, unique=True)
     mobile_no_validator = RegexValidator(regex=r'\d{10}', message="Phone number must be 10 digits only!!")
-    mobile = models.CharField(validators=[mobile_no_validator], max_length=10)
+    mobile = models.CharField(validators=[mobile_no_validator], max_length=10, unique=True)
 
     def __str__(self):
         return f'User: [{self.FirstName} {self.LastName}] with Username: [{self.username}]'
@@ -17,7 +17,7 @@ class User(models.Model):
 class Speaker(User):
     EmergencyContactName = models.CharField(max_length=100, verbose_name='Emergency Contact')
     EmergencyContactNumber = models.CharField(validators=[User.mobile_no_validator], max_length=10, verbose_name='Emergency Contact Number')
-    GitHub = models.CharField(max_length=200)
+    GitHub = models.CharField(max_length=200, unique=True)
     Twitter = models.CharField(max_length=200, blank=True)
     LinkedIn = models.CharField(max_length=200, blank=True)
 
@@ -26,10 +26,10 @@ class Speaker(User):
 
 
 class Venue(models.Model):
-    name = models.CharField(max_length=1000)
+    name = models.CharField(max_length=1000, unique=True)
     description = models.TextField()
-    address = models.TextField()
-    website = models.CharField(max_length=300)
+    address = models.TextField(unique=True)
+    website = models.CharField(max_length=300, unique=True)
     contact = models.CharField(max_length=100)
     verified = models.BooleanField()
     likes = models.IntegerField()
