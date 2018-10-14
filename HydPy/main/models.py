@@ -3,7 +3,7 @@ from django.core.validators import RegexValidator
 
 
 class User(models.Model):
-    username = models.CharField(max_length=32)
+    username = models.CharField(max_length=32, primary_key=True)
     FirstName = models.CharField(max_length=50, verbose_name='First Name')
     LastName = models.CharField(max_length=50, verbose_name='Last Name')
     email = models.CharField(max_length=100)
@@ -26,10 +26,10 @@ class Speaker(User):
 
 
 class Venue(models.Model):
-    name = models.CharField(max_length=1000)
+    name = models.CharField(max_length=1000, unique=True)
     description = models.TextField()
-    address = models.TextField()
-    website = models.CharField(max_length=300)
+    address = models.TextField(unique=True)
+    website = models.CharField(max_length=300, unique=True)
     contact = models.CharField(max_length=100)
     verified = models.BooleanField()
     likes = models.IntegerField()
