@@ -11,7 +11,13 @@ class UserForm(ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'FirstName', 'LastName', 'email', 'mobile']
+        fields = [
+            'username',
+            'FirstName',
+            'LastName',
+            'email',
+            'mobile'
+        ]
 
     # username = forms.CharField(label='Username', max_length=32)
     # first_name = forms.CharField(label='First Name', max_length=50)
@@ -25,7 +31,18 @@ class SpeakerForm(ModelForm):
 
     class Meta:
         model = Speaker
-        fields = ['EmergencyContactName', 'EmergencyContactNumber', 'GitHub', 'Twitter', 'LinkedIn']
+        fields = [
+            'username',
+            'FirstName',
+            'LastName',
+            'email',
+            'mobile',
+            'EmergencyContactName',
+            'EmergencyContactNumber',
+            'GitHub',
+            'Twitter',
+            'LinkedIn'
+        ]
 
     # EmergencyContactName = forms.CharField(max_length=100, label='Emergency Contact')
     # EmergencyContactNumber = forms.CharField(validators=[UserForm.mobile_no_validator], max_length=10, label='Emergency Contact Number')

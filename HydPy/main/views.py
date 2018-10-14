@@ -50,3 +50,7 @@ def add_speaker(request):
         form = SpeakerForm()
 
     return render(request, 'add_speaker.html', {'form': form})
+
+
+def get_speaker(request, username):
+    return render(request, 'get_speaker.html', {'speaker': Speaker.objects.get(username=username)})
