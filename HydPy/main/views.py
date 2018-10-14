@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib import messages
+from django.db.utils import IntegrityError
 
 from .forms import (
     UserForm,
@@ -23,9 +24,13 @@ def add_user(request):
         form = UserForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            try:
+                form.save()
+            except IntegrityError as error:
+                messages.debug(request, f'Failed to add user due to error: {error}')
+
             messages.info(request, 'User added successfully')
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(f'/user/{form.cleaned_data.get("username")}')
 
     else:
         form = UserForm()
@@ -34,7 +39,12 @@ def add_user(request):
 
 
 def get_user(request, username):
-    return render(request, 'get_user.html', {'user': User.objects.get(username=username)})
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return HttpResponseBadRequest('No user exists with the given username')
+
+    return render(request, 'get_user.html', {'user': user})
 
 
 def add_speaker(request):
@@ -42,9 +52,13 @@ def add_speaker(request):
         form = SpeakerForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            try:
+                form.save()
+            except IntegrityError as error:
+                messages.debug(request, f'Failed to add speaker due to error: {error}')
+
             messages.info(request, 'Speaker added successfully')
-            return HttpResponseRedirect('')
+            return HttpResponseRedirect(f'/speaker/{form.cleaned_data.get("username")}')
 
     else:
         form = SpeakerForm()
@@ -53,4 +67,9 @@ def add_speaker(request):
 
 
 def get_speaker(request, username):
-    return render(request, 'get_speaker.html', {'speaker': Speaker.objects.get(username=username)})
+    try:
+        speaker = Speaker.objects.get(username=username)
+    except Speaker.DoesNotExist:
+        return HttpResponseBadRequest('No speaker exists with the given username')
+
+    return render(request, 'get_speaker.html', {'speaker': speaker})
