@@ -58,6 +58,8 @@ The event module will contain the Event, Venue and Speaker models. It will have 
 
 The mockup of the noify page is attached. It will use Ajax requests to make the various posts from the page.
 
+There will be no Venue or Speaker page in the initial version. It will be available in django admin where the organise can add them. 
+
 ### Autofill feature
 The Autofill feature will support the auto generation of posts in various platfroms from the content in meetup.com. The user has to enter the text in the meetup.com textbox and when the user clicks autofill it will populate the content in other textboxes with some added intelligence, e.g. Truncating content for Twitter to 150 characters, making inline links bulleted at the end for mailing lists. The Autofill features will be a JS functionality which will happen in the client side. The user can then tweak the posts instead of manually filling each and every post.
 
