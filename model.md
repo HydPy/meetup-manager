@@ -1,6 +1,6 @@
 # Database model
 
-![database model](./model.png)
+![database model](./ermodel.png)
 
 The above picture shows the Entity Relationship diagram. Here's how the sample data would look like:
 
