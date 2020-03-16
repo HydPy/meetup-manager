@@ -48,5 +48,6 @@ Once the meetup is over we can automatically post the resources (slides, code re
     - Listing of Venue partners
 2. Creating Workflow for peer review of notifications posted on social media platforms
 
-
+## Tech Stack
+meetup-manager will be a django app ideally using v2.2 LTS. It will use jQuery for front end.
 
