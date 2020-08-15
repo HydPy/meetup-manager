@@ -18,4 +18,4 @@ RUN pipenv install
 
 COPY ./src ./
 
-CMD [ "pipenv", "run", "python", "meetup_manager/manage.py", "runserver", "0.0.0.0:8080" ]
+CMD [ "bash", "startup.sh" ]
