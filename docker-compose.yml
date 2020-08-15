@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:11
+    env_file: .env.development
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "54432:5432"
+
+volumes:
+  pgdata:
