@@ -9,5 +9,15 @@ services:
     ports:
       - "54432:5432"
 
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile.django
+    env_file: .env.development
+    volumes:
+      - ./src:/app
+    ports:
+      - "8080:8080"
+
 volumes:
   pgdata:
