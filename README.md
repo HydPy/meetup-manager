@@ -53,7 +53,9 @@ Once the meetup is over we can automatically post the resources (slides, code re
 
 You need to have Docker installed to run the app locally
 
-After docker is installed, run the command on the terminal:
+Then you need to udpate the `DJANGO_SECRET_KEY` env variable in your `.env.development` file
+
+To build the image and run the services, run the command on the terminal:
 
 ```$ docker-compose up --build -d```
 
