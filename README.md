@@ -62,3 +62,8 @@ To build the image and run the services, run the command on the terminal:
 This command will build the docker image on your local system using the Dockerfile and other configuration specified.
 
 And finally launch all services defined in the `docker-compose.yml` file, create its own network, etc.
+
+`NOTE:` If the `meetup-manager` container keeps on going down and error in the logs show permission denied for the
+`wait-for-it.sh` utility, please run the below command from src directory
+
+```$ chmod +x wait-for-it.sh```

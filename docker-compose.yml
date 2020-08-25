@@ -18,6 +18,9 @@ services:
       - ./src:/app
     ports:
       - "8080:8080"
+    depends_on:
+      - "postgres"
+    command: ["./wait-for-it.sh", "postgres:5432", "--", "bash", "startup.sh"]
 
 volumes:
   pgdata:
