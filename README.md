@@ -11,11 +11,12 @@ We also need contacts of various speakers who are willing to present at the meet
 For meetups we also need a list of Companies and PoCs whom we can contact for hosting the meetup. We can store this data in a central place for easy accessibility. This will enable the easy transfer of responsibilities between organisers of the meeup.
 
 ## Scope
+
 The meetup manager aims to solve the problem of announcing meetup notifications in different platform from one place without having to know the credentials of each platforms. Additonally it will serve as a common location for getting data about speakers, venue and meetups.
 
 ## Purpose of the Project
 
-The purpose of the project is to Automate most common tasks for meetup Organizers and also provide a Workflow for the tasks. Based on that here is a list of user stories which can be useful to describe various use cases. 
+The purpose of the project is to Automate most common tasks for meetup Organizers and also provide a Workflow for the tasks. Based on that here is a list of user stories which can be useful to describe various use cases.
 
 ### Social media Integration/Announcement system
 
@@ -48,5 +49,21 @@ Once the meetup is over we can automatically post the resources (slides, code re
     - Listing of Venue partners
 2. Creating Workflow for peer review of notifications posted on social media platforms
 
+## Running the app locally
 
+You need to have Docker installed to run the app locally
 
+Then you need to udpate the `DJANGO_SECRET_KEY` env variable in your `.env.development` file
+
+To build the image and run the services, run the command on the terminal:
+
+```$ docker-compose up --build -d```
+
+This command will build the docker image on your local system using the Dockerfile and other configuration specified.
+
+And finally launch all services defined in the `docker-compose.yml` file, create its own network, etc.
+
+`NOTE:` If the `meetup-manager` container keeps on going down and error in the logs show permission denied for the
+`wait-for-it.sh` utility, please run the below command from src directory
+
+```$ chmod +x wait-for-it.sh```
