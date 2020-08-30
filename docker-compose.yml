@@ -14,6 +14,7 @@ services:
     env_file: .env.development
     volumes:
       - ./src:/app
+      - static:/app/meetup_manager/static
     depends_on:
       - postgres
     command: ["./wait-for-it.sh", "postgres:5432", "--", "bash", "startup.sh"]
@@ -22,8 +23,11 @@ services:
     build: ./nginx
     ports:
       - 1337:80
+    volumes:
+      - static:/app/meetup_manager/static
     depends_on:
       - django
 
 volumes:
   pgdata:
+  static:
