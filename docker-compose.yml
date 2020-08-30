@@ -6,8 +6,6 @@ services:
     env_file: .env.development
     volumes:
       - pgdata:/var/lib/postgresql/data
-    ports:
-      - "54432:5432"
 
   django:
     build:
@@ -16,11 +14,16 @@ services:
     env_file: .env.development
     volumes:
       - ./src:/app
-    ports:
-      - "8080:8080"
     depends_on:
-      - "postgres"
+      - postgres
     command: ["./wait-for-it.sh", "postgres:5432", "--", "bash", "startup.sh"]
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - django
 
 volumes:
   pgdata:
