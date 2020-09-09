@@ -28,6 +28,10 @@ This command will build the docker image on your local system using the Dockerfi
 
 And finally launch all services defined in the `docker-compose.yml` file, create its own network, etc.
 
+The Django application is running on a Gunicorn application server and NGINX web server as the reverse proxy.
+
+After running the above command, in the browser go to: `http://localhost`
+
 `NOTE:` If the `meetup-manager` container keeps on going down and error in the logs show permission denied for the
 `wait-for-it.sh` utility, please run the below command from src directory
 
